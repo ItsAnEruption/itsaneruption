@@ -1,0 +1,52 @@
+import sprite
+import random
+import pygame
+pygame.init()
+w = pygame.display.set_mode([1018, 573])
+c = pygame.time.Clock()
+dragon_sheet = sprite.ImageSheet("DragonFlying.png", 4, 6)
+wizard_sheet = sprite.ImageSheet("WizardWalking.png", 4, 6)
+background = sprite.Sprite("FantasyField.jpg", 0, 0)
+dragon = sprite.Sprite(dragon_sheet, 300, 500)
+wizard = sprite.Sprite(wizard_sheet, 600, 250)
+collisions = 0
+rumble = pygame.mixer.Sound("rumble.mp3")
+roar = pygame.mixer.Sound("big_roar.mp3")
+drawing = True
+print("MAKE THE WIZARD MAD! CLICK ON HIM!!")
+roar.play()
+while drawing:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            drawing = False
+            print("You clicked the wizard " + str(collisions) + " times! OOF!")
+            if collisions > 20:
+                print("Whoa! You clicked the wizard quite the amount")
+            if collisions > 50:
+                print("Geez! No need to be that mean!")
+            if collisions > 100:
+                print("You are a terrorist.... BE MADE WITH INFINATE DO YOU KNW DA WAEZ!")
+                wae = True
+                while wae:
+                    print("DO YOU KNW DA WAE?")
+            roar.play()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = pygame.mouse.get_pos()
+            dragon.x = x
+            dragon.y = y
+        if event.type == pygame.MOUSEBUTTONUP:
+            rumble.play()
+    if pygame.sprite.collide_rect(dragon, wizard):
+        collisions += 1
+        print("STOP IT!")
+        wizard.x = random.randint(1, 1017)
+        wizard.y = random.randint(1, 572)
+            
+    wizard.update(c.get_time())
+    dragon.update(c.get_time())
+    background.draw()
+    wizard.draw()
+    dragon.draw
+    c.tick(60)
+    pygame.display.flip()
+
