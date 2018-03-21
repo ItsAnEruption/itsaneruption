@@ -1,0 +1,25 @@
+import sprite
+import pygame
+pygame.init()
+c = pygame.time.Clock()
+w = pygame.display.set_mode([1920,1080])
+brocco = sprite.Sprite("broccoli.png", 960, 540, w)
+background = sprite.Sprite("dragonwallpaper.jpg", 0, 0, w)
+eat = sprite.Sprite("eatyourbroccoli.png", 470, 270, w)
+num_moving = 2
+drawing = True
+while drawing:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            drawing = False
+        if event.type == pygame.MOUSEBUTTONDOWN: 
+            brocco.x += 200
+            if brocco.x > 1920:
+                brocco.x = 0
+    print("Man, this dragon doesn't eat his broccoli, lets teach it a lesson....")
+    pygame.time.wait(10000)
+    background.draw()
+    brocco.draw()
+    eat.draw()
+    pygame.display.flip()
+    c.tick(30)
