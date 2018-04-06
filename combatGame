@@ -1,0 +1,75 @@
+import sprite
+import pygame
+import random
+pygame.init()
+c = pygame.time.Clock()
+hedgehog_health = 10
+beetle_health = 10
+hedgehog_turn = True
+beetle_turn = False
+w = pygame.display.set_mode([1920, 1200])
+hedgehog = sprite.Sprite("hedgehog.png", 250, 142.5, w )
+beetle = sprite.Sprite("Ganondorf.png", 1000, 142.5, w )
+background = sprite.Sprite("FantasyField.jpg", 0, 0, w )
+
+beetle.flip_x = True
+background.draw()
+hedgehog.draw()
+beetle.draw()
+pygame.display.flip()
+c.tick(30)
+drawing = True
+while drawing:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            drawing = False
+    if hedgehog_turn is True:
+        if hedgehog_health <= 0:
+            print("Ganondorf wins! Better luck next time! ")
+            break
+        choice = input("Attack, Defend ")
+        if choice == "Attack":
+            damage = random.randint(1, 5)
+            beetle_health -= damage
+            if beetle_health < 0:
+                beetle_health == 0
+            if damage == 5:
+                print("CRITICAL HIT! The master sword embeds in Ganondorf's head. Ganondorf's health is: " + str(beetle_health))
+            else:
+                print("HIT! The master sword strikes Ganondorf. Ganondorf's health is: " + str(beetle_health))
+        elif choice == "Defend":
+            hedgehog_health += 2
+            
+        hedgehog_turn = False
+        beetle_turn = True
+        if beetle_health < 0 or beetle_health == 0:
+            drawing = False
+        pygame.time.wait(2000)
+    if beetle_turn is True:
+        if beetle_health <= 0:
+            print("YOU WIN! Ganondorf dies....")
+            break
+            
+        if choice == "Defend":
+            damage = random.randint(0, 1)
+            hedgehog_health -= damage
+            if hedgehog_health < 0:
+                hedgehog_health == 0
+            print("Ganondorf uses his rage. You took " + str(damage) + ". You have " + str(hedgehog_health) + " left...")
+            beetle_turn = False
+            hedgehog_turn = True
+        else:
+            damage = random.randint(1, 5)
+            hedgehog_health -= damage
+            if hedgehog_health < 0:
+                hedgehog_health == 0
+            print("Ganondorf uses his greatswords against you. You took " + str(damage) + ". You have " + str(hedgehog_health) + " left...")
+            beetle_turn = False
+            hedgehog_turn = True
+            pygame.time.wait(2000)
+            if hedgehog_health == 0 or hedgehog_health < 0:
+                drawing = False
+        if hedgehog_health < 0:
+            hedgehog_health == 0
+        if beetle_health < 0:
+            hedgehog_health == 0
