@@ -13,7 +13,7 @@ collisions = 0
 rumble = pygame.mixer.Sound("rumble.mp3")
 roar = pygame.mixer.Sound("big_roar.mp3")
 drawing = True
-print("MAKE THE WIZARD MAD! CLICK ON HIM!!")
+print("The wizard doesn't like being clicked on. Doesn't that make you want to click the wizard? YOU KNOW IT DOES....")
 roar.play()
 while drawing:
     for event in pygame.event.get():
