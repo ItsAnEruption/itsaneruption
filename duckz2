@@ -1,0 +1,32 @@
+import random
+import sprite
+import pygame
+pygame.init()
+ducks = []
+w = pygame.display.set_mode([1018, 573])
+backgroundColor = (153, 0, 204)
+x = 0
+y = 0
+
+duckAmount = ""
+def duckCreate(x, y, duckAmount):
+    duckAmount = input("Press enter for a duck")
+    x = random.randint(0, 1018)
+    y = random.randint(0, 573)    
+    for i in range(1):
+        duck = sprite.Sprite("Duck.png", x, y, w)
+        duck.scale = 0.3
+        ducks.append(duck)
+def drawDucks(ducks, x, y):
+    for duck in ducks:
+        duck.draw()
+
+drawing = True
+while drawing:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            drawing = False
+    w.fill(backgroundColor)
+    duckCreate(x, y, duckAmount)
+    drawDucks(ducks, x, y)
+    pygame.display.flip()
