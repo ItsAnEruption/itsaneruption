@@ -1,0 +1,30 @@
+import random
+import sprite
+import pygame
+pygame.init()
+x = ""
+y = ""
+w = pygame.display.set_mode([1018, 573])
+ducks = []
+color = (0, 255, 123)
+def createDucks(x, y, w, ducks):
+        createDuck = input("Type Duck or duck to create a duck...")
+        if createDuck == "Duck" or createDuck == "duck":
+            print("Creating duck..... ")
+            duckScale = int(input("How big would you like your duck to be? Please enter a number greater than 0."))
+            duck = sprite.Sprite("Duck.png", random.randint(0, 1018), random.randint(0, 573), w)
+            ducks.append(duck)
+            duck.scale = duckScale
+def drawDucks(x, y, w,ducks):
+            for duck in ducks:
+                duck.draw()
+
+drawing = True
+while drawing:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        drawing = False
+        print("WELCOME to DUCKLANDIA! WHERE THE DUCKS ROAM FREE!")
+        w.fill(color)
+        createDucks(x, y, w, ducks)
+        drawDucks(x, y, w, ducks)
