@@ -10,7 +10,7 @@ color = (0, 255, 123)
 def createDucks(x, y, w, ducks):
         createDuck = input("Type Duck or duck to create a duck...")
         if createDuck == "Duck" or createDuck == "duck":
-            print("Creating duck..... ")
+            print("Creating a duck... ")
             duckScale = int(input("How big would you like your duck to be? Please enter a number greater than 0."))
             duck = sprite.Sprite("Duck.png", random.randint(0, 1018), random.randint(0, 573), w)
             ducks.append(duck)
