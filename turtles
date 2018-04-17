@@ -1,0 +1,24 @@
+import random
+import pygame
+pygame.init()
+animating = True
+while animating:
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      print("HONESTLY! YOU ARE QUITTING SOMETHING ABOUT TURTLES! WHO ARE YOU! Well, I'm going to infinite loop you now. TURTLES ARE GREAT!")
+      turtleSpam()
+  def turtleSpam():
+    turtleSpam = True
+    while turtleSpam:
+      print("TURTLES ARE THE BEST!")
+  likeTurtles = input("Do you like Turtles? I do for sure. Please only answer yes or no...")
+  if likeTurtles is not "Yes" or likeTurtles is not "No":
+    print("YOU ENTERED INVALID INPUT! TURTLESPAM!")
+    turtleSpam()
+  elif likeTurtles == "Yes" or likeTurtles == "yes":
+    print("You are good. You may now leave....")
+    animating = False
+  elif likeTurtles == "No" or likeTurtles == "no":
+    print("YOU DO NOT LIKE TURTLES! TURTLESPAM!")
+    print("DON'T EVEN TRY QUITTING THAT WILL TURTLESPAM YOU TOO!")
+    turtleSpam()
